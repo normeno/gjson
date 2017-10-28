@@ -1,18 +1,18 @@
 {
-    "name": ":vendor/:package_name",
+    "name": "normeno/gjson",
     "type": "library",
-    "description": ":package_description",
+    "description": "Generate output based on Google JSON style guide",
     "keywords": [
-        ":vendor",
-        ":package_name"
+        "normeno",
+        "gjson"
     ],
-    "homepage": "https://github.com/:vendor/:package_name",
+    "homepage": "https://github.com/normeno/gjson",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Nicolas Ormeno",
+            "email": "ni.ormeno@gmail.com",
+            "homepage": "normeno.com",
             "role": "Developer"
         }
     ],
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            ":vendor\\:package_name\\": "src"
+            "normeno\\gjson\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            ":vendor\\:package_name\\": "tests"
+            "normeno\\gjson\\": "tests"
         }
     },
     "scripts": {

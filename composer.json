@@ -1,10 +1,10 @@
 {
-    "name": "normeno/gjson",
+    "name": "Normeno/Gjson",
     "type": "library",
     "description": "Generate output based on Google JSON style guide",
     "keywords": [
-        "normeno",
-        "gjson"
+        "Normeno",
+        "Gjson"
     ],
     "homepage": "https://github.com/normeno/gjson",
     "license": "MIT",
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "normeno\\gjson\\": "src"
+            "Normeno\\Gjson\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "normeno\\gjson\\": "tests"
+            "Normeno\\Gjson\\": "tests"
         }
     },
     "scripts": {

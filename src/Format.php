@@ -1,7 +1,36 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * This file is part of the Gjson library.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * PHP Version 5, 7
+ *
+ * LICENSE: This source file is subject to the MIT license that is available
+ * through the world-wide-web at the following URI:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category Src
+ * @package  Normeno\Gjson
+ * @author   Nicolas Ormeno <ni.ormeno@gmail.com>
+ * @license  http://opensource.org/licenses/mit-license.php MIT License
+ * @link     https://github.com/normeno/gjson
+ */
 
 namespace Normeno\Gjson;
 
+/**
+ * Tests for Format
+ *
+ * @category Src
+ * @package  Normeno\Gjson
+ * @author   Nicolas Ormeno <ni.ormeno@gmail.com>
+ * @license  http://opensource.org/licenses/mit-license.php MIT License
+ * @link     https://github.com/normeno/gjson
+ */
 class Format
 {
     /**
@@ -13,18 +42,8 @@ class Format
     }
 
     /**
-     * Friendly welcome
+     * Remove empty fields (null, '' or zero)
      *
-     * @param string $phrase Phrase to return
-     *
-     * @return string Returns the phrase passed in
-     */
-    public function echoPhrase($phrase)
-    {
-        return $phrase;
-    }
-
-    /**
      * @param object|array $collect items
      *
      * @return mixed
@@ -35,7 +54,7 @@ class Format
 
         foreach ($data as $k => $v) {
 
-            if ( empty($v) ) {
+            if (empty($v) ) {
                 unset($data[$k]);
             }
         }

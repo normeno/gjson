@@ -51,7 +51,7 @@ class FormatTest extends \PHPUnit\Framework\TestCase
     /**
      * Test for RemoveEmpty function
      *
-     * @uses Format::removeEmpty() for the test
+     * @use Format::removeEmpty() for the test
      *
      * @return void
      */

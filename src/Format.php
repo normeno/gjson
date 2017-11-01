@@ -53,8 +53,7 @@ class Format
         $data = ( !is_array($collect) ) ? (array)$collect : $collect;
 
         foreach ($data as $k => $v) {
-
-            if (empty($v) ) {
+            if (empty($v)) {
                 unset($data[$k]);
             }
         }

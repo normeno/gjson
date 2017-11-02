@@ -24,6 +24,7 @@
 namespace Normeno\Gjson\Test;
 
 use Normeno\Gjson\Format;
+use Carbon\Carbon;
 
 /**
  * Tests for Format
@@ -72,5 +73,23 @@ class FormatTest extends \PHPUnit\Framework\TestCase
             || property_exists($formatObj, 'zero');
 
         $this->assertFalse($checkArr && $checkObj);
+    }
+
+    /**
+     * Set RFC3339 format
+     *
+     * @use Format::setRfc3339() for the test
+     *
+     * @return void
+     */
+    public function testSetRfc3339()
+    {
+        $datetime   = $this->_format->setRfc3339('1989-10-04', '19:28:15');
+        $date       = $this->_format->setRfc3339('1989-10-05');
+
+        $result = ($datetime == '1989-10-04T19:28:15+01:00'
+            && $date == '1989-10-05T01:11:08+01:00') ? true : false;
+
+        $this->assertFalse($result);
     }
 }

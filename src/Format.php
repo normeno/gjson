@@ -22,6 +22,8 @@
 
 namespace Normeno\Gjson;
 
+use Carbon\Carbon;
+
 /**
  * Tests for Format
  *
@@ -59,5 +61,28 @@ class Format
         }
 
         return is_array($collect) ? $data : (object)$data;
+    }
+
+    /**
+     * Set RFC3339 format
+     *
+     * @param string $date Format yyyy-mm-dd
+     * @param string $time Format hh:ii:ss
+     *
+     * @return mixed
+     */
+    public function setRfc3339($date = null, $time = null)
+    {
+        if (is_null($date)) {
+            return null;
+        }
+
+        if (!is_null($time)) {
+            $format = Carbon::createFromFormat('Y-m-d H:i:s', "{$date} {$time}");
+        } elseif (Carbon::createFromFormat('Y-m-d', $date)) {
+            $format = Carbon::createFromFormat('Y-m-d', "{$date}");
+        }
+
+        return $format->toRfc3339String();
     }
 }

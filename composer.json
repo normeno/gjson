@@ -1,5 +1,5 @@
 {
-    "name": "Normeno/Gjson",
+    "name": "normeno/gjson",
     "type": "library",
     "description": "Generate output based on Google JSON style guide",
     "keywords": [

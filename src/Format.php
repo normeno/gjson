@@ -113,4 +113,22 @@ class Format
 
         return is_object($data) ? (object)$dataToWork : $dataToWork;
     }
+
+    /**
+     * Set ISO-6709 standard
+     *
+     * @param object $coords Array with lat and lng
+     *
+     * @return null
+     */
+    public function setIso6709($coords)
+    {
+        if (!is_array($coords) || count($coords) != 2) {
+            return null;
+        }
+
+        $coordinates = "{$coords[0]}{$coords[1]}";
+
+        return $coordinates;
+    }
 }

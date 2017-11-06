@@ -145,4 +145,19 @@ class FormatTest extends \PHPUnit\Framework\TestCase
 
         $this->assertFalse($hasUnderline);
     }
+
+    /**
+     * Generate Coordinates format
+     *
+     * @use Format::setIso6709() for the test
+     *
+     * @return void
+     */
+    public function testArraySetIso6793()
+    {
+        $iso6793   = $this->_format->setIso6709(['+40.6894', '-074.0447']);
+        $response  = ($iso6793 == '+40.6894-074.0447') ? true : false;
+
+        $this->assertTrue($response);
+    }
 }

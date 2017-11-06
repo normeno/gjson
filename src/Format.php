@@ -85,4 +85,32 @@ class Format
 
         return $format->toRfc3339String();
     }
+
+    /**
+     * Change snake case to camel case
+     *
+     * @param object|array $data Data to convert
+     *
+     * @see https://stackoverflow.com/a/3600758
+     *
+     * @return null
+     */
+    public function convertSnakeToCamel($data)
+    {
+        if (!is_object($data) && !is_array($data)) {
+            return null;
+        }
+
+        $dataToWork = is_object($data) ? (array)$data : $data;
+
+        foreach ($dataToWork as $k => $v) {
+            $newK = strtolower($k);
+            $newK = str_replace('_', '', ucwords($newK, '_'));
+
+            $dataToWork[$newK] = $v;    // Add element
+            unset($dataToWork[$k]);     // Remove element
+        }
+
+        return is_object($data) ? (object)$dataToWork : $dataToWork;
+    }
 }

@@ -92,4 +92,57 @@ class FormatTest extends \PHPUnit\Framework\TestCase
 
         $this->assertFalse($result);
     }
+
+    /**
+     * Change array key snake case to camel case
+     *
+     * @use Format::convertSnakeToCamel() for the test
+     *
+     * @return void
+     */
+    public function testArraySnakeToCamel()
+    {
+        $data = [
+            'laTaM_cOuNtRy' => 'Chile',
+            'latam_REGION'  => 'Metropolitana',
+            'LATAM_city'    => 'Santiago'
+        ];
+
+        $convert        = $this->_format->convertSnakeToCamel($data);
+        $hasUnderline   = false;
+
+        foreach ($convert as $k => $v) {
+            if (strpos($k, '_')) {
+                $hasUnderline = true;
+            }
+        }
+
+        $this->assertFalse($hasUnderline);
+    }
+
+    /**
+     * Change array key snake case to camel case
+     *
+     * @use Format::convertSnakeToCamel() for the test
+     *
+     * @return void
+     */
+    public function testObjectSnakeToCamel()
+    {
+        $data = new \stdClass();
+        $data->laTaM_cOuNtRy = 'Chile';
+        $data->latam_REGION  = 'Metropolitana';
+        $data->LATAM_city    = 'Santiago';
+
+        $convert        = $this->_format->convertSnakeToCamel($data);
+        $hasUnderline   = false;
+
+        foreach ($convert as $k => $v) {
+            if (strpos($k, '_')) {
+                $hasUnderline = true;
+            }
+        }
+
+        $this->assertFalse($hasUnderline);
+    }
 }

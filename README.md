@@ -20,12 +20,31 @@ $ composer require normeno/gjson
 
 ## Usage
 
+### Remove Empties
+``` php
+$format = new Format();
+echo $format->removeEmpty(['foo' => 'bar', 'null' => null, 'empty' => '', 'zero' => 0]);
+```
+
 ### Set RFC3339
 ``` php
-use Normeno\Gjson;
-...
 $format = new Format();
 echo $format->setRfc3339('1989-10-05');
+```
+
+### Convert Snake to Camel
+``` php
+$format = new Format();
+echo $format->convertSnakeToCamel([
+    'laTaM_cOuNtRy' => 'Chile',
+    'latam_REGION'  => 'Metropolitana',
+    'LATAM_city'    => 'Santiago'
+]);
+```
+### Set ISO-6793
+``` php
+$format = new Format();
+echo $format->setIso6709(['+40.6894', '-074.0447']);
 ```
 
 ## Change log

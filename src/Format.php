@@ -69,7 +69,7 @@ class Format
      * @param string $date Format yyyy-mm-dd
      * @param string $time Format hh:ii:ss
      *
-     * @return mixed
+     * @return null|string
      */
     public function setRfc3339($date = null, $time = null)
     {

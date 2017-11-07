@@ -104,10 +104,6 @@ class Response
      */
     public function success($data)
     {
-        $success = [
-            'items' => $data
-        ];
-
         $response = $this->basicStructure() + $data;
         return $this->output($response);
     }

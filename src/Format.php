@@ -43,6 +43,18 @@ class Format
         // constructor body
     }
 
+    public function allFormats($collect)
+    {
+        $formatted  = $this->convertSnakeToCamel($collect);
+
+
+        if (is_array($formatted) && count($formatted) > 0) {
+            $formatted = $this->loopAndFormat($formatted);
+        }
+
+        return $formatted;
+    }
+
     /**
      * Remove empty fields (null, '' or zero)
      *
@@ -128,5 +140,32 @@ class Format
         $coordinates = "{$coords[0]}{$coords[1]}";
 
         return $coordinates;
+    }
+
+    /**
+     * Format collection with all formats
+     *
+     * @param array $collect collect to format
+     *
+     * @return array
+     */
+    private function loopAndFormat($collect)
+    {
+        foreach ($collect as $k => $v) {
+            if (!is_array($v)) {
+                if (\DateTime::createFromFormat('Y-m-d', $v)) {
+                    $collect[$k] = $this->setRfc3339($v);
+                } elseif (\DateTime::createFromFormat('Y-m-d H:i:s', $v)) {
+                    $collect[$k] = $this->setRfc3339($v);
+                }
+            }
+
+            if (is_array($v) && count($v) > 0) { // Format snake
+                $formatChild = $this->convertSnakeToCamel($v);
+                $collect[$k] = $formatChild;
+            }
+        }
+
+        return $collect;
     }
 }

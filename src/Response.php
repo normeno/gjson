@@ -96,6 +96,23 @@ class Response
     }
 
     /**
+     * Generate success response
+     *
+     * @param array   $data data
+     *
+     * @return array|object|string
+     */
+    public function success($data)
+    {
+        $success = [
+            'items' => $data
+        ];
+
+        $response = $this->basicStructure() + $data;
+        return $this->output($response);
+    }
+
+    /**
      * Generate basic structure
      *
      * This structure is used in all the responses

@@ -23,6 +23,7 @@
 
 namespace Normeno\Gjson\Test;
 
+use Normeno\Gjson\Format;
 use Normeno\Gjson\Response;
 
 /**
@@ -37,6 +38,7 @@ use Normeno\Gjson\Response;
 class ResponseTest extends \PHPUnit\Framework\TestCase
 {
     private $response;
+    private $format;
 
     /**
      * FormatTest constructor.
@@ -45,6 +47,7 @@ class ResponseTest extends \PHPUnit\Framework\TestCase
     {
         parent::__construct();
 
+        $this->format   = new Format();
         $this->response = new Response();
     }
 
@@ -83,6 +86,93 @@ class ResponseTest extends \PHPUnit\Framework\TestCase
 
         $error = $this->response->error(404, 'File Not Found', $extra);
         json_decode($error);
+        $checkJson = (json_last_error() == JSON_ERROR_NONE);
+
+        $this->assertTrue($checkJson);
+    }
+
+    /**
+     * Test for success function
+     *
+     * @use Response::success() for the test
+     *
+     * @return void
+     */
+    public function testFlattenedSuccessResponse()
+    {
+        $data = [
+            'items' => [
+                'company'   => 'Google',
+                'website'   => 'https://www.google.com/'
+            ]
+        ];
+
+        $success = $this->response->success($data);
+        json_decode($success);
+        $checkJson = (json_last_error() == JSON_ERROR_NONE);
+
+        $this->assertTrue($checkJson);
+    }
+
+    /**
+     * Test for success function
+     *
+     * @use Response::success() for the test
+     *
+     * @return void
+     */
+    public function testStructuredSuccessResponse()
+    {
+        $data = [
+            'items' => [
+                'company'   => 'Google',
+                'website'   => 'https://www.google.com/',
+                'address'   => [
+                    'line1' => '111 8th Ave',
+                    'line2' => '4th Floor',
+                    'state' => 'NY',
+                    'city'  => 'New York',
+                    'zip'   => '10011'
+                ]
+            ]
+        ];
+
+        $success = $this->response->success($data);
+        json_decode($success);
+        $checkJson = (json_last_error() == JSON_ERROR_NONE);
+
+        $this->assertTrue($checkJson);
+    }
+
+    /**
+     * Test for success function
+     *
+     * @use Response::success() for the test
+     *
+     * @return void
+     */
+    public function testFormattedSuccessResponse()
+    {
+        $collect = [
+            'company_name'  => 'Google',
+            'website_url'   => 'https://www.google.com/',
+            'facebook_url'  => null,
+            'twitter_url'   => '',
+            'linkedin_url'  => 0,
+            'created_at'    => '1998-09-04',
+            'address'       => [
+                'line_1'    => '111 8th Ave',
+                'line_2'    => '4th Floor',
+                'state'     => 'NY',
+                'city'      => 'New York',
+                'zip'       => '10011'
+            ]
+
+        ];
+
+        $formatted = $this->format->allFormats($collect);
+        $success = $this->response->success($formatted);
+        json_decode($success);
         $checkJson = (json_last_error() == JSON_ERROR_NONE);
 
         $this->assertTrue($checkJson);

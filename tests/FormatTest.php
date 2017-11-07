@@ -37,7 +37,7 @@ use Carbon\Carbon;
  */
 class FormatTest extends \PHPUnit\Framework\TestCase
 {
-    private $_format;
+    private $format;
 
     /**
      * FormatTest constructor.
@@ -46,7 +46,7 @@ class FormatTest extends \PHPUnit\Framework\TestCase
     {
         parent::__construct();
 
-        $this->_format = new Format();
+        $this->format = new Format();
     }
 
     /**
@@ -61,8 +61,8 @@ class FormatTest extends \PHPUnit\Framework\TestCase
         $arr = ['foo' => 'bar', 'null' => null, 'empty' => '', 'zero' => 0];
         $obj = (object)$arr;
 
-        $formatArr  = $this->_format->removeEmpty($arr);
-        $formatObj  = $this->_format->removeEmpty($obj);
+        $formatArr  = $this->format->removeEmpty($arr);
+        $formatObj  = $this->format->removeEmpty($obj);
 
         $checkArr   = in_array('null', $formatArr)
             || in_array('empty', $formatArr)
@@ -84,8 +84,8 @@ class FormatTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetRfc3339()
     {
-        $datetime   = $this->_format->setRfc3339('1989-10-04', '19:28:15');
-        $date       = $this->_format->setRfc3339('1989-10-05');
+        $datetime   = $this->format->setRfc3339('1989-10-04', '19:28:15');
+        $date       = $this->format->setRfc3339('1989-10-05');
 
         $result = ($datetime == '1989-10-04T19:28:15+01:00'
             && $date == '1989-10-05T01:11:08+01:00') ? true : false;
@@ -108,7 +108,7 @@ class FormatTest extends \PHPUnit\Framework\TestCase
             'LATAM_city'    => 'Santiago'
         ];
 
-        $convert        = $this->_format->convertSnakeToCamel($data);
+        $convert        = $this->format->convertSnakeToCamel($data);
         $hasUnderline   = false;
 
         foreach ($convert as $k => $v) {
@@ -134,7 +134,7 @@ class FormatTest extends \PHPUnit\Framework\TestCase
         $data->latam_REGION  = 'Metropolitana';
         $data->LATAM_city    = 'Santiago';
 
-        $convert        = $this->_format->convertSnakeToCamel($data);
+        $convert        = $this->format->convertSnakeToCamel($data);
         $hasUnderline   = false;
 
         foreach ($convert as $k => $v) {
@@ -155,7 +155,7 @@ class FormatTest extends \PHPUnit\Framework\TestCase
      */
     public function testArraySetIso6793()
     {
-        $iso6793   = $this->_format->setIso6709(['+40.6894', '-074.0447']);
+        $iso6793   = $this->format->setIso6709(['+40.6894', '-074.0447']);
         $response  = ($iso6793 == '+40.6894-074.0447') ? true : false;
 
         $this->assertTrue($response);

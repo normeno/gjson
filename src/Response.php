@@ -135,13 +135,10 @@ class Response
         switch ($this->format) {
             case 'array':
                 return (array)$data;
-                break;
             case 'object':
                 return (object)$data;
-                break;
             case 'json':
                 return json_encode($data);
-                break;
             default:
                 return json_encode($data);
         }

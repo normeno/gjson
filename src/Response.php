@@ -92,7 +92,7 @@ class Response
         }
 
         $response = $this->basicStructure() + $error;
-        return $this->output($response, JSON_FORCE_OBJECT);
+        return $this->output($response);
     }
 
     /**

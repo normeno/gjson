@@ -47,6 +47,25 @@ $format = new Format();
 echo $format->setIso6709(['+40.6894', '-074.0447']);
 ```
 
+### Error Response
+``` php
+$response = new Response();
+echo $this->response->error(404, 'File Not Found');
+```
+
+### Success Response
+``` php
+$response = new Response();
+$data = [
+    'items' => [
+        'company'   => 'Google',
+        'website'   => 'https://www.google.com/'
+    ]
+];
+
+echo $this->response->success($data);
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

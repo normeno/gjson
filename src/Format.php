@@ -77,11 +77,9 @@ class Format
             return null;
         }
 
-        if (!is_null($time)) {
-            $format = Carbon::createFromFormat('Y-m-d H:i:s', "{$date} {$time}");
-        } elseif (Carbon::createFromFormat('Y-m-d', $date)) {
-            $format = Carbon::createFromFormat('Y-m-d', "{$date}");
-        }
+        $format = (!is_null($time))
+            ? Carbon::createFromFormat('Y-m-d H:i:s', "{$date} {$time}")
+            : Carbon::createFromFormat('Y-m-d', "{$date}");
 
         return $format->toRfc3339String();
     }

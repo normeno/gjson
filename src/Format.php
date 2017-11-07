@@ -60,7 +60,7 @@ class Format
      *
      * @param object|array $collect items
      *
-     * @return mixed
+     * @return array|object
      */
     public function removeEmpty($collect)
     {
@@ -81,12 +81,12 @@ class Format
      * @param string $date Format yyyy-mm-dd
      * @param string $time Format hh:ii:ss
      *
-     * @return null|string
+     * @return false|string
      */
     public function setRfc3339($date = null, $time = null)
     {
         if (is_null($date)) {
-            return null;
+            return false;
         }
 
         $format = (!is_null($time))
@@ -103,12 +103,12 @@ class Format
      *
      * @see https://stackoverflow.com/a/3600758
      *
-     * @return null
+     * @return false|object|array
      */
     public function convertSnakeToCamel($data)
     {
         if (!is_object($data) && !is_array($data)) {
-            return null;
+            return false;
         }
 
         $dataToWork = is_object($data) ? (array)$data : $data;
@@ -129,12 +129,12 @@ class Format
      *
      * @param object $coords Array with lat and lng
      *
-     * @return null
+     * @return false|array
      */
     public function setIso6709($coords)
     {
         if (!is_array($coords) || count($coords) != 2) {
-            return null;
+            return false;
         }
 
         $coordinates = "{$coords[0]}{$coords[1]}";

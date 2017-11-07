@@ -132,24 +132,18 @@ class Response
      */
     private function output($data)
     {
-        if (empty($data)) {
-            return false;
-        }
-
         switch ($this->format) {
             case 'array':
-                $response = (array)$data;
+                return (array)$data;
                 break;
             case 'object':
-                $response = (object)$data;
+                return (object)$data;
                 break;
             case 'json':
-                $response = json_encode($data);
+                return json_encode($data);
                 break;
             default:
-                $response = json_encode($data);
+                return json_encode($data);
         }
-
-        return $response;
     }
 }

@@ -57,15 +57,13 @@ class Response
     /**
      * Response constructor.
      *
-     * @param string $apiVersion number of version
-     * @param string $context    name of context
-     * @param string $format     json|array|object
+     * @param array $opts Options
      */
-    public function __construct($apiVersion = '1.0', $context = 'api', $format = 'json')
+    public function __construct($opts = null)
     {
-        $this->apiVersion  = $apiVersion;
-        $this->context     = $context;
-        $this->format      = $format;
+        $this->apiVersion  = (isset($opts['apiVersion'])) ? $opts['apiVersion'] : '1.0';
+        $this->context     = (isset($opts['context'])) ? $opts['context'] : 'api';
+        $this->format      = (isset($opts['format'])) ? $opts['format'] : 'json';
     }
 
     /**

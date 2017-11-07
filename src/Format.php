@@ -89,9 +89,12 @@ class Format
             return false;
         }
 
-        $format = (!is_null($time))
-            ? Carbon::createFromFormat('Y-m-d H:i:s', "{$date} {$time}")
-            : Carbon::createFromFormat('Y-m-d', "{$date}");
+        if (\DateTime::createFromFormat('Y-m-d', $date)
+            || \DateTime::createFromFormat('Y-m-d H:i:s', "{$date} {$time}")) {
+            $format = (!is_null($time))
+                ? Carbon::createFromFormat('Y-m-d H:i:s', "{$date} {$time}")
+                : Carbon::createFromFormat('Y-m-d', "{$date}");
+        }
 
         return $format->toRfc3339String();
     }

@@ -85,16 +85,15 @@ class Format
      */
     public function setRfc3339($date = null, $time = null)
     {
-        if (is_null($date)) {
+        if (is_null($date)
+            || !\DateTime::createFromFormat('Y-m-d', $date)
+            || !\DateTime::createFromFormat('Y-m-d H:i:s', "{$date} {$time}")) {
             return false;
         }
 
-        if (\DateTime::createFromFormat('Y-m-d', $date)
-            || \DateTime::createFromFormat('Y-m-d H:i:s', "{$date} {$time}")) {
-            $format = (!is_null($time))
-                ? Carbon::createFromFormat('Y-m-d H:i:s', "{$date} {$time}")
-                : Carbon::createFromFormat('Y-m-d', "{$date}");
-        }
+        $format = (!is_null($time))
+            ? Carbon::createFromFormat('Y-m-d H:i:s', "{$date} {$time}")
+            : Carbon::createFromFormat('Y-m-d', "{$date}");
 
         return $format->toRfc3339String();
     }
